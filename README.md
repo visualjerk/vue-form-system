@@ -1,8 +1,7 @@
 # Vue Form System
 
 > The goal is to provide standardized form and input components. They should be ease to use, yet not limiting.
-
-> This is not a plugin. Use it as a starter framework for building your own form system.
+> This is **not** a plugin. Use it as a starter framework for building your own form system.
 
 ## Build Setup
 
