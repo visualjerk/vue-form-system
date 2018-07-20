@@ -13,6 +13,7 @@
     </header>
     <h2>Form Data</h2>
     <p>Name: {{ formData.name }}</p>
+    <p>Gender: {{ formData.gender }}</p>
     <p>Email: {{ formData.email }}</p>
     <p v-for="(address, index) in formData.addresses" :key="index">
       Addresses {{index}}: {{address}}
@@ -29,6 +30,7 @@
       <h3>Basic Info</h3>
       <base-input model="name" label="Name" />
       <base-input model="email" label="Email" />
+      <base-select model="gender" label="Gender" :options="['male','female']" />
       <h3>Address Book</h3>
       <list-input model="addresses" label="address" />
     </base-form>
@@ -59,6 +61,7 @@ export default {
     return {
       formData: {
         name: "peter",
+        gender: "male",
         email: "peter@maffay.com",
         addresses: [
           "Peterstr. 2, 90502 City",
@@ -79,6 +82,7 @@ export default {
     setDataExternally() {
       this.formData = {
         name: "john",
+        gender: "male",
         email: "john@lennon.com",
         addresses: ["Johnstr. 2, 90502 City", "Lennonplatz 85, 8888 City"]
       };
@@ -88,7 +92,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/_variables";
+@import "./assets/common";
 
 body {
   background: $color-light;

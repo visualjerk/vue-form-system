@@ -1,5 +1,16 @@
+$color-white: #ffffff;
 $color-light: #f7f8f9;
 $color-dark: #2c3e50;
 $color-primary: #44b985;
-$border-color: #c7d3d6;
-$border-color-focus: darken($border-color, 20%);
+
+$input-color: $color-dark;
+$input-border-width: 1px;
+$input-border-color: #c7d3d6;
+$input-border-color-focus: darken($input-border-color, 20%);
+$input-background: $color-light;
+$input-background-focus: lighten($input-background, 10%);
+$input-font-size: 14px;
+$input-min-width: 200px;
+$input-height: 30px;
+$input-padding: 10px;
+$input-transition: 0.2s ease-out;

@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/_variables";
+@import "../../assets/common";
 
 form {
   max-width: 400px;

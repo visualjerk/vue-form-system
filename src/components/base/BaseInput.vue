@@ -5,8 +5,7 @@
     </label>
     <input type="text"
       :value="value"
-      @input="input"
-      invalid />
+      @input="input" />
   </div>
 </template>
 
@@ -19,17 +18,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/_variables";
+@import "../../assets/common";
 input {
-  font-size: 14px;
-  height: 30px;
-  padding: 0 10px;
-  color: $color-dark;
-  border: 1px solid $border-color;
-  outline: none;
-
-  &:focus {
-    border-color: $border-color-focus;
-  }
+  @include input;
 }
 </style>

@@ -1,0 +1,18 @@
+@mixin input {
+  box-sizing: border-box;
+  font-size: $input-font-size;
+  min-width: $input-min-width;
+  max-width: 100%;
+  height: $input-height;
+  padding: 0 $input-padding;
+  color: $color-dark;
+  background: $input-background;
+  border: $input-border-width solid $input-border-color;
+  outline: none;
+  transition: $input-transition;
+
+  &:focus {
+    border-color: $input-border-color-focus;
+    background: $input-background-focus;
+  }
+}
