@@ -4,7 +4,7 @@
       <h1>Concept: Vue Form System</h1>
       <p>
         The goal is to provide standardized form and input components.<br />
-        They should be ease to use, yet not limiting.
+        They should be easy to use, yet not limiting.
       </p>
       <p>
         This is <strong>not</strong> a plugin.<br />

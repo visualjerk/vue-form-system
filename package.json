@@ -1,7 +1,7 @@
 {
   "name": "concept-vue-form-system",
   "version": "1.0.0",
-  "description": "The goal is to provide standardized form and input components. They should be ease to use, yet not limiting.",
+  "description": "The goal is to provide standardized form and input components. They should be easy to use, yet not limiting.",
   "main": "src/main.js",
   "private": true,
   "scripts": {
