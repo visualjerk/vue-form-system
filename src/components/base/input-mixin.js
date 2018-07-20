@@ -1,29 +1,30 @@
 // ToDo: provide validation
-import dotProp from "dot-prop";
+import dotProp from 'dot-prop';
+
 export default {
-  inject: ["subscribe", "update"],
+  inject: ['subscribe', 'update'],
   props: {
     model: {
       type: String,
-      required: true
+      required: true,
     },
     label: {
-      type: String
-    }
+      type: String,
+    },
   },
   data() {
     return {
-      value: null
+      value: null,
     };
   },
   methods: {
     input(event) {
       this.update(this.model, event.target.value);
-    }
+    },
   },
   created() {
-    this.subscribe(data => {
+    this.subscribe((data) => {
       this.value = dotProp.get(data, this.model);
     });
-  }
+  },
 };

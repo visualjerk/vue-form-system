@@ -9,66 +9,65 @@
 
 <script>
 // ToDo: provide validation
-import deepCopy from "deepcopy";
-import dotProp from "dot-prop";
+import cloneDeep from 'clone-deep';
+import dotProp from 'dot-prop';
+
 export default {
-  name: "form-wrapper",
+  name: 'form-wrapper',
   props: {
     value: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       newData: null,
-      subscriber: []
+      subscriber: [],
     };
   },
   watch: {
     value: {
       handler(value) {
-        this.subscriber.forEach(cb => {
-          cb(deepCopy(value));
+        this.subscriber.forEach((cb) => {
+          cb(cloneDeep(value));
         });
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   methods: {
     submit() {
       // do some validation
-      this.$emit("input", this.newData);
+      this.$emit('input', this.newData);
       // submit changed data
-      console.log("submit data", this.newData);
+      // eslint-disable-next-line
+      console.log('submit data', this.newData);
     },
     subscribe(cb) {
-      cb(deepCopy(this.value));
+      cb(cloneDeep(this.value));
       this.subscriber.push(cb);
     },
     update(model, value) {
       dotProp.set(this.newData, model, value);
-      console.log(this.newData);
-    }
+    },
   },
   created() {
     // Subscribe to itself
-    this.subscribe(data => {
+    this.subscribe((data) => {
       this.newData = data;
     });
   },
   provide() {
     return {
       subscribe: this.subscribe,
-      update: this.update
+      update: this.update,
     };
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/common";
-
 form {
   max-width: 400px;
   padding: 20px;

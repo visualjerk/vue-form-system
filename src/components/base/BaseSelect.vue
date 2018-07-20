@@ -3,7 +3,7 @@
     <label v-if="label">
       {{ label }}:
     </label>
-    <select type="text" @change="input">
+    <select @change="input">
       <option
         v-for="option in options"
         :value="option.value || option"
@@ -17,23 +17,23 @@
 </template>
 
 <script>
-import inputMixin from "./input-mixin";
+import inputMixin from './input-mixin';
+
 export default {
-  name: "base-select",
+  name: 'base-select',
   mixins: [inputMixin],
   props: {
     options: {
       type: [Array, Object],
       default() {
         return [];
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/common";
 select {
   @include input;
 }

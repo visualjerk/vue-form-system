@@ -10,21 +10,21 @@
 </template>
 
 <script>
-import inputMixin from "./input-mixin";
+import inputMixin from './input-mixin';
+
 export default {
-  name: "base-input",
+  name: 'base-input',
   mixins: [inputMixin],
   props: {
     type: {
       type: String,
-      default: "text"
-    }
-  }
+      default: 'text',
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/common";
 input {
   @include input;
 }

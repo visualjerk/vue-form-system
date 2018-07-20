@@ -57,13 +57,15 @@ exports.cssLoaders = function(options) {
     }
   }
 
+  const srcPath = path.resolve(__dirname, '../src');
+
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders("less"),
     sass: generateLoaders("sass", { indentedSyntax: true }),
-    scss: generateLoaders(["css", 'sass?data=@import "~assets/common";']),
+    sass: generateLoaders("sass", { data: `@import "${srcPath}/assets/common";` }),
     stylus: generateLoaders("stylus"),
     styl: generateLoaders("stylus")
   };

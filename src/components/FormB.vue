@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: "form-b"
+  name: 'form-b',
 };
 </script>

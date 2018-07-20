@@ -9,9 +9,10 @@
 </template>
 
 <script>
-import inputMixin from "./input-mixin";
+import inputMixin from './input-mixin';
+
 export default {
-  name: "list-input",
+  name: 'list-input',
   mixins: [inputMixin],
   methods: {
     remove(index) {
@@ -19,10 +20,10 @@ export default {
       this.update(this.model, this.value);
     },
     add() {
-      this.value.push("");
+      this.value.push('');
       this.update(this.model, this.value);
-    }
-  }
+    },
+  },
 };
 </script>
 

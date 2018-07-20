@@ -48,28 +48,28 @@
 </template>
 
 <script>
-import FormA from "./components/FormA";
-import FormB from "./components/FormB";
+import FormA from './components/FormA';
+import FormB from './components/FormB';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     FormA,
-    FormB
+    FormB,
   },
   data() {
     return {
       formData: {
-        name: "peter",
-        gender: "male",
-        email: "peter@maffay.com",
+        name: 'peter',
+        gender: 'male',
+        email: 'peter@maffay.com',
         addresses: [
-          "Peterstr. 2, 90502 City",
-          "Maffayplatz 11, 8888 City",
-          "Maxpowerstr. 33, 23459 City"
-        ]
+          'Peterstr. 2, 90502 City',
+          'Maffayplatz 11, 8888 City',
+          'Maxpowerstr. 33, 23459 City',
+        ],
       },
-      formComponent: FormA
+      formComponent: FormA,
     };
   },
   methods: {
@@ -81,19 +81,17 @@ export default {
     },
     setDataExternally() {
       this.formData = {
-        name: "john",
-        gender: "male",
-        email: "john@lennon.com",
-        addresses: ["Johnstr. 2, 90502 City", "Lennonplatz 85, 8888 City"]
+        name: 'john',
+        gender: 'male',
+        email: 'john@lennon.com',
+        addresses: ['Johnstr. 2, 90502 City', 'Lennonplatz 85, 8888 City'],
       };
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss">
-@import "./assets/common";
-
 body {
   background: $color-light;
   padding: 0;
