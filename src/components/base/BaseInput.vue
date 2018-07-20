@@ -1,11 +1,15 @@
 <template>
-  <div>
+  <div :class="stateClasses">
     <label v-if="label">
       {{ label }}:
     </label>
-    <input :type="type"
+    <input
+      :name="model"
+      :type="type"
       :value="value"
-      @input="input" />
+      @input="input"
+      :disabled="disabled" >
+    <input-error :error="error" />
   </div>
 </template>
 
@@ -13,12 +17,15 @@
 import inputMixin from './input-mixin';
 
 export default {
-  name: 'base-input',
+  name: 'BaseInput',
   mixins: [inputMixin],
   props: {
     type: {
       type: String,
       default: 'text',
+      validator: val => (
+        ['url', 'text', 'password', 'email', 'search'].indexOf(val) !== -1
+      ),
     },
   },
 };

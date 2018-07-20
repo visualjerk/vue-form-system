@@ -3,11 +3,11 @@
     <header>
       <h1>Concept: Vue Form System</h1>
       <p>
-        The goal is to provide standardized form and input components.<br />
+        The goal is to provide standardized form and input components.<br >
         They should be easy to use, yet not limiting.
       </p>
       <p>
-        This is <strong>not</strong> a plugin.<br />
+        This is <strong>not</strong> a plugin.<br >
         Use it as a starter framework for building your own form system.
       </p>
     </header>
@@ -15,8 +15,10 @@
     <p>Name: {{ formData.name }}</p>
     <p>Gender: {{ formData.gender }}</p>
     <p>Email: {{ formData.email }}</p>
-    <p v-for="(address, index) in formData.addresses" :key="index">
-      Addresses {{index}}: {{address}}
+    <p
+      v-for="(address, index) in formData.addresses"
+      :key="index">
+      Addresses {{ index }}: {{ address }}
     </p>
 
     <h2>Minimal Example</h2>
@@ -26,13 +28,25 @@
     </base-form>
 
     <h2>Complex Example</h2>
-    <base-form v-model="formData">
+    <base-form
+      v-model="formData"
+      :validation="validationOptions">
       <h3>Basic Info</h3>
-      <base-input model="name" label="Name" />
-      <base-input model="email" label="Email" />
-      <base-select model="gender" label="Gender" :options="['male','female']" />
+      <base-input
+        model="name"
+        label="Name" />
+      <base-input
+        model="email"
+        label="Email"
+        type="email" />
+      <base-select
+        model="gender"
+        label="Gender"
+        :options="['male','female']" />
       <h3>Address Book</h3>
-      <list-input model="addresses" label="address" />
+      <list-input
+        model="addresses"
+        label="address" />
     </base-form>
 
     <h2>Dynamic Form Component</h2>
@@ -68,6 +82,10 @@ export default {
           'Maffayplatz 11, 8888 City',
           'Maxpowerstr. 33, 23459 City',
         ],
+      },
+      validationOptions: {
+        name: 'required',
+        email: 'required|email',
       },
       formComponent: FormA,
     };

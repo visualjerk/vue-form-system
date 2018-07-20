@@ -65,7 +65,7 @@ exports.cssLoaders = function(options) {
     postcss: generateLoaders(),
     less: generateLoaders("less"),
     sass: generateLoaders("sass", { indentedSyntax: true }),
-    sass: generateLoaders("sass", { data: `@import "${srcPath}/assets/common";` }),
+    sass: generateLoaders("sass", { data: `@import "${srcPath}/assets/styles/common";` }),
     stylus: generateLoaders("stylus"),
     styl: generateLoaders("stylus")
   };

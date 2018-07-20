@@ -1,6 +1,8 @@
 <template>
-  <form @submit.prevent="submit">
-    <slot></slot>
+  <form
+    @submit.prevent="submit"
+    novalidate="true">
+    <slot/>
     <slot name="footer">
       <button>submit</button>
     </slot>
@@ -8,51 +10,71 @@
 </template>
 
 <script>
-// ToDo: provide validation
+import { Validator } from 'vee-validate';
 import cloneDeep from 'clone-deep';
 import dotProp from 'dot-prop';
 
 export default {
-  name: 'form-wrapper',
+  name: 'BaseForm',
   props: {
     value: {
       type: Object,
       required: true,
+    },
+    validation: {
+      type: Object,
+      default: null,
     },
   },
   data() {
     return {
       newData: null,
       subscriber: [],
+      errors: null,
     };
   },
   watch: {
     value: {
       handler(value) {
-        this.subscriber.forEach((cb) => {
-          cb(cloneDeep(value));
-        });
+        this.notify(value, this.errors);
       },
       deep: true,
     },
   },
   methods: {
-    submit() {
-      // do some validation
+    async submit() {
+      const validation = await this.validator.validateAll(this.newData);
+      if (!validation) {
+        this.notify(this.newData, this.errors);
+        return;
+      }
       this.$emit('input', this.newData);
       // submit changed data
       // eslint-disable-next-line
       console.log('submit data', this.newData);
     },
     subscribe(cb) {
-      cb(cloneDeep(this.value));
-      this.subscriber.push(cb);
+      if (cb && typeof cb === 'function') {
+        cb(cloneDeep(this.value));
+        this.subscriber.push(cb);
+      }
     },
-    update(model, value) {
+    notify(data, errors) {
+      this.subscriber.forEach((cb) => {
+        cb(cloneDeep(data), errors);
+      });
+    },
+    async update(model, value) {
       dotProp.set(this.newData, model, value);
+      // await this.validator.validate(model, value);
+      // this.notifyErrors();
     },
   },
   created() {
+    // Todo: handle v-for validation
+    // Todo: make validations reactive
+    this.validator = new Validator(this.validation);
+    this.$set(this, 'errors', this.validator.errors);
     // Subscribe to itself
     this.subscribe((data) => {
       this.newData = data;

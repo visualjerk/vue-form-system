@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="stateClasses">
     <label v-if="label">
       {{ label }}:
     </label>
@@ -7,12 +7,13 @@
       <option
         v-for="option in options"
         :value="option.value || option"
-        :selected="option.value ?  option.value === value : option === value"
+        :selected="option.value ? option.value === value : option === value"
         :key="option"
       >
         {{ option.label ? option.label : option }}
       </option>
     </select>
+    <input-error :error="error" />
   </div>
 </template>
 
@@ -20,7 +21,7 @@
 import inputMixin from './input-mixin';
 
 export default {
-  name: 'base-select',
+  name: 'BaseSelect',
   mixins: [inputMixin],
   props: {
     options: {

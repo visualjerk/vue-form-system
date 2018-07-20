@@ -1,0 +1,39 @@
+$color-white: #ffffff;
+$color-light: #f7f8f9;
+$color-dark: #2c3e50;
+$color-muted: #707880;
+$color-primary: #44b985;
+$color-danger: #c74040;
+$color-success: #37be43;
+$color-warning: #d8ae24;
+
+$font-size-xxx-large: 64px;
+$font-size-xx-large: 48px;
+$font-size-x-large: 36px;
+$font-size-large: 24px;
+$font-size-base: 16px;
+$font-size-small: 13px;
+$font-size-x-small: 11px;
+
+$space-xx-large: 128px;
+$space-x-large: 64px;
+$space-large: 36px;
+$space-base: 24px;
+$space-small: 16px;
+$space-x-small: 8px;
+$space-xx-small: 4px;
+
+$transition-long: 0.5s ease-out;
+$transition-base: 0.15s ease-out;
+$transition-short: 0.08s ease-out;
+
+$input-color: $color-dark;
+$input-color-disabled: $color-muted;
+$input-border-width: 1px;
+$input-border-color: #c7d3d6;
+$input-border-color-focus: darken($input-border-color, 20%);
+$input-border-color-danger: $color-danger;
+$input-background: $color-light;
+$input-background-focus: lighten($input-background, 10%);
+$input-min-width: 200px;
+$input-transition: 0.2s ease-out;

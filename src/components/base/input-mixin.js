@@ -11,11 +11,24 @@ export default {
     label: {
       type: String,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
       value: null,
+      error: null,
     };
+  },
+  computed: {
+    stateClasses() {
+      return {
+        'is-disabled': this.disabled,
+        'has-error': !!this.error,
+      };
+    },
   },
   methods: {
     input(event) {
@@ -23,8 +36,9 @@ export default {
     },
   },
   created() {
-    this.subscribe((data) => {
+    this.subscribe((data, errors) => {
       this.value = dotProp.get(data, this.model);
+      this.error = errors && errors.first ? errors.first(this.model) : null;
     });
   },
 };
