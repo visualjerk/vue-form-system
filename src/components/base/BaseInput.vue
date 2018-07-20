@@ -3,7 +3,7 @@
     <label v-if="label">
       {{ label }}:
     </label>
-    <input type="text"
+    <input :type="type"
       :value="value"
       @input="input" />
   </div>
@@ -13,7 +13,13 @@
 import inputMixin from "./input-mixin";
 export default {
   name: "base-input",
-  mixins: [inputMixin]
+  mixins: [inputMixin],
+  props: {
+    type: {
+      type: String,
+      default: "text"
+    }
+  }
 };
 </script>
 
