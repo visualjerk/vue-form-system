@@ -15,6 +15,10 @@
     <p>Name: {{ formData.name }}</p>
     <p>Gender: {{ formData.gender }}</p>
     <p>Email: {{ formData.email }}</p>
+    <h3>Nested Data</h3>
+    <p>Language: {{ formData.settings.language }}</p>
+    <p>Enabled: {{ formData.settings.enabled ? 'yes' : 'no' }}</p>
+    <p>Status: {{ formData.settings.status }}</p>
     <p
       v-for="(address, index) in formData.addresses"
       :key="index">
@@ -43,6 +47,14 @@
         model="gender"
         label="Gender"
         :options="['male','female']" />
+      <h3>Settings</h3>
+      <base-select
+        model="settings.language"
+        label="Language"
+        :options="['en','de','fr','it']" />
+      <base-input
+        model="settings.status"
+        label="Status" />
       <h3>Address Book</h3>
       <list-input
         model="addresses"
@@ -77,6 +89,10 @@ export default {
         name: 'peter',
         gender: 'male',
         email: 'peter@maffay.com',
+        settings: {
+          language: 'en',
+          status: 'Funny',
+        },
         addresses: [
           'Peterstr. 2, 90502 City',
           'Maffayplatz 11, 8888 City',
@@ -87,6 +103,12 @@ export default {
       formSchema: {
         name: { required: true, message: 'Fill in a name' },
         email: { type: 'email', required: true, message: 'Fill in a valid email' },
+        settings: {
+          type: 'object',
+          fields: {
+            status: { max: 10, message: 'Use a maximum of 10 letters' },
+          },
+        },
         addresses: {
           type: 'array',
           required: true,
