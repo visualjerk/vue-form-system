@@ -30,7 +30,7 @@
     <h2>Complex Example</h2>
     <base-form
       v-model="formData"
-      :validation="validationOptions">
+      :schema="formSchema">
       <h3>Basic Info</h3>
       <base-input
         model="name"
@@ -83,9 +83,15 @@ export default {
           'Maxpowerstr. 33, 23459 City',
         ],
       },
-      validationOptions: {
-        name: 'required',
-        email: 'required|email',
+      // https://github.com/yiminghe/async-validator
+      formSchema: {
+        name: { required: true, message: 'Fill in a name' },
+        email: { type: 'email', required: true, message: 'Fill in a valid email' },
+        addresses: {
+          type: 'array',
+          required: true,
+          defaultField: { required: true, message: 'Fill in a valid address' },
+        },
       },
       formComponent: FormA,
     };

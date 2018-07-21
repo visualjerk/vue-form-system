@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { Validator } from 'vee-validate';
+import Schema from 'async-validator';
 import cloneDeep from 'clone-deep';
 import dotProp from 'dot-prop';
 
@@ -21,7 +21,7 @@ export default {
       type: Object,
       required: true,
     },
-    validation: {
+    schema: {
       type: Object,
       default: null,
     },
@@ -42,16 +42,31 @@ export default {
     },
   },
   methods: {
-    async submit() {
-      const validation = await this.validator.validateAll(this.newData);
-      if (!validation) {
+    submit() {
+      this.validate(() => {
+        this.$emit('input', this.newData);
+        // submit changed data
+        // eslint-disable-next-line
+        console.log('submit data', this.newData);
+      });
+    },
+    validate(cb) {
+      const validator = new Schema(this.schema);
+      validator.validate(this.newData, (errors) => {
+        if (errors) {
+          this.errors = errors.reduce((errorObj, error) => {
+            const result = { ...errorObj };
+            result[error.field] = error.message;
+            return result;
+          }, {});
+        } else {
+          this.errors = null;
+        }
         this.notify(this.newData, this.errors);
-        return;
-      }
-      this.$emit('input', this.newData);
-      // submit changed data
-      // eslint-disable-next-line
-      console.log('submit data', this.newData);
+        if (!errors && cb && typeof cb === 'function') {
+          cb();
+        }
+      });
     },
     subscribe(cb) {
       if (cb && typeof cb === 'function') {
@@ -66,16 +81,10 @@ export default {
     },
     async update(model, value) {
       dotProp.set(this.newData, model, value);
-      // await this.validator.validate(model, value);
-      // this.notifyErrors();
+      this.validate();
     },
   },
   created() {
-    // Todo: handle v-for validation
-    // Todo: make validations reactive
-    this.validator = new Validator(this.validation);
-    this.$set(this, 'errors', this.validator.errors);
-    // Subscribe to itself
     this.subscribe((data) => {
       this.newData = data;
     });

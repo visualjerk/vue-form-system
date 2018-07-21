@@ -38,7 +38,7 @@ export default {
   created() {
     this.subscribe((data, errors) => {
       this.value = dotProp.get(data, this.model);
-      this.error = errors && errors.first ? errors.first(this.model) : null;
+      this.error = errors ? errors[this.model] : null;
     });
   },
 };

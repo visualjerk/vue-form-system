@@ -3,7 +3,8 @@
     <p
       v-for="(item, index) in value"
       :key="index">
-      <base-input :model="`${model}.${index}`" />
+      <base-input
+        :model="`${model}.${index}`" />
       <button
         @click="remove(index)"
         type="button">x</button>
@@ -27,6 +28,8 @@ export default {
     },
     add() {
       this.value.push('');
+      // eslint-disable-next-line
+      console.log(this.value);
       this.update(this.model, this.value);
     },
   },
