@@ -28,8 +28,6 @@ export default {
     },
     add() {
       this.value.push('');
-      // eslint-disable-next-line
-      console.log(this.value);
       this.update(this.model, this.value);
     },
   },

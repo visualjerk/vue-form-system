@@ -23,7 +23,7 @@ export default {
     },
     schema: {
       type: Object,
-      default: null,
+      default: () => ({}),
     },
   },
   data() {
@@ -36,6 +36,7 @@ export default {
   watch: {
     value: {
       handler(value) {
+        this.newData = cloneDeep(value);
         this.notify(value, this.errors);
       },
       deep: true,
@@ -52,6 +53,11 @@ export default {
     },
     validate(cb) {
       const validator = new Schema(this.schema);
+      // Prevent validator from printing to console
+      // eslint-disable-next-line
+      const warn = console.warn;
+      // eslint-disable-next-line
+      console.warn = () => {};
       validator.validate(this.newData, (errors) => {
         if (errors) {
           this.errors = errors.reduce((errorObj, error) => {
@@ -62,6 +68,8 @@ export default {
         } else {
           this.errors = null;
         }
+        // eslint-disable-next-line
+        console.warn = warn;
         this.notify(this.newData, this.errors);
         if (!errors && cb && typeof cb === 'function') {
           cb();
@@ -70,7 +78,7 @@ export default {
     },
     subscribe(cb) {
       if (cb && typeof cb === 'function') {
-        cb(cloneDeep(this.value));
+        cb(cloneDeep(this.newData));
         this.subscriber.push(cb);
       }
     },
@@ -85,9 +93,7 @@ export default {
     },
   },
   created() {
-    this.subscribe((data) => {
-      this.newData = data;
-    });
+    this.newData = cloneDeep(this.value);
   },
   provide() {
     return {
