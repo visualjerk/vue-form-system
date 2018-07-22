@@ -67,7 +67,6 @@
       <p>
         <button @click="showFormA">show formA</button>
         <button @click="showFormB">show formB</button>
-        <button @click="setDataExternally">set data externally</button>
       </p>
       <base-form v-model="formData">
         <component :is="formComponent" />
@@ -127,14 +126,6 @@ export default {
     },
     showFormB() {
       this.formComponent = FormB;
-    },
-    setDataExternally() {
-      this.formData = {
-        name: 'john',
-        gender: 'male',
-        email: 'john@lennon.com',
-        addresses: ['Johnstr. 2, 90502 City', 'Lennonplatz 85, 8888 City'],
-      };
     },
   },
 };

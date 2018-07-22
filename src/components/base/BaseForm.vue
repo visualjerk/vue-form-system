@@ -106,7 +106,7 @@ export default {
 
 <style lang="scss" scoped>
 form {
-  padding: 20px;
+  padding: $space-base;
   border: 1px solid #eaeeef;
   background: #fff;
   margin: 0 auto;
@@ -116,7 +116,7 @@ button {
   width: 100%;
   padding: $space-x-small;
   min-height: $input-height;
-  margin-top: 30px;
+  margin-top: $space-x-small;
   font-size: 16px;
   background-color: $color-primary;
   color: $color-light;

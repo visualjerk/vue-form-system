@@ -85,6 +85,7 @@ export default {
   transition: $transition-short;
   cursor: pointer;
   padding: $space-x-small $space-base;
+  margin-bottom: $space-base;
   &:hover {
     background: darken($color-light, 10%);
   }
