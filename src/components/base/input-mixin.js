@@ -1,8 +1,12 @@
-// ToDo: provide validation
 import dotProp from 'dot-prop';
 
 export default {
   inject: ['subscribe', 'update'],
+  provide() {
+    return {
+      inputField: this,
+    };
+  },
   props: {
     model: {
       type: String,

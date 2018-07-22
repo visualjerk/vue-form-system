@@ -1,8 +1,5 @@
 <template>
-  <div :class="stateClasses">
-    <label v-if="label">
-      {{ label }}:
-    </label>
+  <form-item>
     <select @change="input">
       <option
         v-for="option in options"
@@ -13,8 +10,7 @@
         {{ option.label ? option.label : option }}
       </option>
     </select>
-    <input-error :error="error" />
-  </div>
+  </form-item>
 </template>
 
 <script>

@@ -24,10 +24,12 @@ export default {
 <style lang="scss" scoped>
 .input-error {
   color: $color-danger;
-  padding: $space-x-small;
+  font-size: $font-size-small;
+  position: absolute;
+  bottom: 5px;
 }
 
-.input-error-enter-active, {
+.input-error-enter-active {
   transition: all $transition-long;
 }
 

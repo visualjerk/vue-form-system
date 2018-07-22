@@ -1,16 +1,12 @@
 <template>
-  <div :class="stateClasses">
-    <label v-if="label">
-      {{ label }}:
-    </label>
+  <form-item>
     <input
       :name="model"
       :type="type"
       :value="value"
       @input="input"
-      :disabled="disabled" >
-    <input-error :error="error" />
-  </div>
+      :disabled="disabled">
+  </form-item>
 </template>
 
 <script>

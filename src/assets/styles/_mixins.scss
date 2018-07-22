@@ -1,9 +1,8 @@
 @mixin input {
   box-sizing: border-box;
   font-size: $font-size-base;
-  min-width: 200px;
-  max-width: 100%;
-  height: $space-large;
+  width: 100%;
+  height: $input-height;
   padding: 0 $space-x-small;
   color: $input-color;
   background: $input-background;

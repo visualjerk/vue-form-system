@@ -106,7 +106,6 @@ export default {
 
 <style lang="scss" scoped>
 form {
-  max-width: 400px;
   padding: 20px;
   border: 1px solid #eaeeef;
   background: #fff;
@@ -115,10 +114,19 @@ form {
 
 button {
   width: 100%;
-  padding: 10px;
+  padding: $space-x-small;
+  min-height: $input-height;
   margin-top: 30px;
   font-size: 16px;
   background-color: $color-primary;
   color: $color-light;
+  outline: none;
+  transition: $transition-short;
+  cursor: pointer;
+  border: 0;
+
+  &:hover {
+    background: darken($color-primary, 3%);
+  }
 }
 </style>

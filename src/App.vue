@@ -1,75 +1,78 @@
 <template>
   <div id="app">
     <header>
-      <h1>Concept: Vue Form System</h1>
-      <p>
-        The goal is to provide standardized form and input components.<br >
-        They should be easy to use, yet not limiting.
-      </p>
-      <p>
-        This is <strong>not</strong> a plugin.<br >
-        Use it as a starter framework for building your own form system.
-      </p>
+      <div class="container">
+        <h1>Concept: Vue Form System</h1>
+        <p>
+          The goal is to provide standardized form and input components.<br >
+          They should be easy to use, yet not limiting.
+        </p>
+        <p>
+          This is <strong>not</strong> a plugin.<br >
+          Use it as a starter framework for building your own form system.
+        </p>
+      </div>
     </header>
-    <h2>Form Data</h2>
-    <p>Name: {{ formData.name }}</p>
-    <p>Gender: {{ formData.gender }}</p>
-    <p>Email: {{ formData.email }}</p>
-    <h3>Nested Data</h3>
-    <p>Language: {{ formData.settings.language }}</p>
-    <p>Enabled: {{ formData.settings.enabled ? 'yes' : 'no' }}</p>
-    <p>Status: {{ formData.settings.status }}</p>
-    <p
-      v-for="(address, index) in formData.addresses"
-      :key="index">
-      Addresses {{ index }}: {{ address }}
-    </p>
+    <div class="container">
+      <h2>Form Data</h2>
+      <p>Name: {{ formData.name }}</p>
+      <p>Gender: {{ formData.gender }}</p>
+      <p>Email: {{ formData.email }}</p>
+      <h3>Nested Data</h3>
+      <p>Language: {{ formData.settings.language }}</p>
+      <p>Enabled: {{ formData.settings.enabled ? 'yes' : 'no' }}</p>
+      <p>Status: {{ formData.settings.status }}</p>
+      <p
+        v-for="(address, index) in formData.addresses"
+        :key="index">
+        Addresses {{ index }}: {{ address }}
+      </p>
+      <h2>Minimal Example</h2>
+      <base-form v-model="formData">
+        <base-input model="name" />
+        <base-input model="email" />
+      </base-form>
 
-    <h2>Minimal Example</h2>
-    <base-form v-model="formData">
-      <base-input model="name" />
-      <base-input model="email" />
-    </base-form>
+      <h2>Complex Example</h2>
+      <base-form
+        v-model="formData"
+        :schema="formSchema">
+        <h3>Basic Info</h3>
+        <base-input
+          model="name"
+          label="Name" />
+        <base-input
+          model="email"
+          label="Email"
+          type="email" />
+        <base-select
+          model="gender"
+          label="Gender"
+          :options="['male','female']" />
+        <h3>Settings</h3>
+        <base-select
+          model="settings.language"
+          label="Language"
+          :options="['en','de','fr','it']" />
+        <base-input
+          model="settings.status"
+          label="Status" />
+        <h3>Address Book</h3>
+        <list-input
+          model="addresses"
+          label="address" />
+      </base-form>
 
-    <h2>Complex Example</h2>
-    <base-form
-      v-model="formData"
-      :schema="formSchema">
-      <h3>Basic Info</h3>
-      <base-input
-        model="name"
-        label="Name" />
-      <base-input
-        model="email"
-        label="Email"
-        type="email" />
-      <base-select
-        model="gender"
-        label="Gender"
-        :options="['male','female']" />
-      <h3>Settings</h3>
-      <base-select
-        model="settings.language"
-        label="Language"
-        :options="['en','de','fr','it']" />
-      <base-input
-        model="settings.status"
-        label="Status" />
-      <h3>Address Book</h3>
-      <list-input
-        model="addresses"
-        label="address" />
-    </base-form>
-
-    <h2>Dynamic Form Component</h2>
-    <p>
-      <button @click="showFormA">show formA</button>
-      <button @click="showFormB">show formB</button>
-      <button @click="setDataExternally">set data externally</button>
-    </p>
-    <base-form v-model="formData">
-      <component :is="formComponent" />
-    </base-form>
+      <h2>Dynamic Form Component</h2>
+      <p>
+        <button @click="showFormA">show formA</button>
+        <button @click="showFormB">show formB</button>
+        <button @click="setDataExternally">set data externally</button>
+      </p>
+      <base-form v-model="formData">
+        <component :is="formComponent" />
+      </base-form>
+    </div>
   </div>
 </template>
 
@@ -138,6 +141,8 @@ export default {
 </script>
 
 <style lang="scss">
+$container-width: 600px;
+
 body {
   background: $color-light;
   padding: 0;
@@ -148,7 +153,6 @@ body {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: $color-dark;
   padding-bottom: 60px;
 }
@@ -163,5 +167,10 @@ header {
     color: $color-primary;
     margin-top: 0;
   }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: $container-width;
 }
 </style>

@@ -36,4 +36,5 @@ $input-border-color-danger: $color-danger;
 $input-background: $color-light;
 $input-background-focus: lighten($input-background, 10%);
 $input-min-width: 200px;
+$input-height: $space-large;
 $input-transition: 0.2s ease-out;
